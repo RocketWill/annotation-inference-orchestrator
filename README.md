@@ -2,7 +2,7 @@
 
 A server-side orchestration layer that connects annotation tasks with independently deployed Nuclio inference functions. The service retrieves task media, dispatches model inference, maps model labels to task labels, tracks asynchronous progress, and writes normalized results back to the annotation platform.
 
-The repository contains the workflow layer. Model implementations and their Nuclio deployment definitions live in [lkdi-serverless](https://github.com/RocketWill/lkdi-serverless).
+The repository contains the workflow layer. Model implementations and their Nuclio deployment definitions live in [Vision Function Foundry](https://github.com/RocketWill/vision-function-foundry).
 
 ![System architecture](docs/system-architecture.svg)
 
@@ -117,7 +117,7 @@ No model weights are stored in this repository.
    ```
 
 2. Prepare `app/env.sh` from the example configuration.
-3. Deploy at least one compatible function from [lkdi-serverless](https://github.com/RocketWill/lkdi-serverless).
+3. Deploy at least one compatible function from [Vision Function Foundry](https://github.com/RocketWill/vision-function-foundry).
 4. Provide an annotation backend that implements the task and annotation endpoints used by `AnnotationGateway`.
 5. Start the Flask gateway and Celery worker through the container entrypoint or an equivalent local environment.
 
