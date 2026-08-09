@@ -1,21 +1,36 @@
-venv/
-
-*.pyc
+# Byte-compiled / optimized / DLL files
 __pycache__/
+*.py[cod]
+*$py.class
 
-instance/
-
-.pytest_cache/
-.coverage
-htmlcov/
-
-dist/
+# Distribution / packaging
+.Python
+env/
 build/
-*.egg-info/
-
-.vscode
-.env
-celerybeat-schedule.db
-celerybeat-schedule
-
+dist/
 *.log
+*pid.txt
+
+# Static files
+*static/
+
+# pyenv
+.python-version
+
+# dotenv
+.env
+app/env.sh
+
+# virtualenv
+.venv/
+venv/
+ENV/
+
+# VSCode settings
+.vscode
+
+# IDEA files
+.idea
+
+# OSX dir files
+.DS_Store
