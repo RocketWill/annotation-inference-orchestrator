@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Auto-annotation system architecture</title>
+  <desc id="desc">An annotation platform sends tasks to a Flask gateway. Celery workers retrieve media, invoke Nuclio inference functions, normalize results, and save annotations back to the platform.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+    </marker>
+    <style>
+      .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#cbd5e1;stroke-width:2}.accent{fill:#eff6ff;stroke:#2563eb;stroke-width:2}.worker{fill:#f0fdf4;stroke:#16a34a;stroke-width:2}.model{fill:#fff7ed;stroke:#ea580c;stroke-width:2}.title{font:700 24px Inter,Arial,sans-serif;fill:#0f172a}.label{font:700 18px Inter,Arial,sans-serif;fill:#0f172a}.text{font:15px Inter,Arial,sans-serif;fill:#475569}.small{font:13px Inter,Arial,sans-serif;fill:#64748b}.line{stroke:#64748b;stroke-width:2.5;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="620" rx="24"/>
+  <text class="title" x="60" y="58">Auto-Annotation System Architecture</text>
+
+  <rect class="panel" x="60" y="110" width="250" height="150" rx="16"/>
+  <text class="label" x="90" y="150">Annotation Platform</text>
+  <text class="text" x="90" y="184">Task metadata and media</text>
+  <text class="text" x="90" y="210">Labels and calibration</text>
+  <text class="text" x="90" y="236">Generated annotations</text>
+
+  <rect class="accent" x="430" y="110" width="300" height="150" rx="16"/>
+  <text class="label" x="460" y="150">Flask Gateway</text>
+  <text class="text" x="460" y="184">Request validation</text>
+  <text class="text" x="460" y="210">Function discovery</text>
+  <text class="text" x="460" y="236">Job and progress interface</text>
+
+  <rect class="worker" x="430" y="370" width="300" height="150" rx="16"/>
+  <text class="label" x="460" y="410">Celery Workers</text>
+  <text class="text" x="460" y="444">Frame extraction</text>
+  <text class="text" x="460" y="470">Label and geometry mapping</text>
+  <text class="text" x="460" y="496">Batched result write-back</text>
+
+  <rect class="panel" x="60" y="370" width="250" height="150" rx="16"/>
+  <text class="label" x="90" y="410">RabbitMQ</text>
+  <text class="text" x="90" y="444">Asynchronous job queue</text>
+  <text class="text" x="90" y="470">Worker coordination</text>
+
+  <rect class="model" x="850" y="110" width="290" height="410" rx="16"/>
+  <text class="label" x="880" y="150">Nuclio Functions</text>
+  <text class="text" x="880" y="184">Independent model services</text>
+  <rect class="panel" x="880" y="220" width="230" height="70" rx="12"/>
+  <text class="text" x="905" y="250">2D detector / segmenter</text>
+  <text class="small" x="905" y="272">image → shapes</text>
+  <rect class="panel" x="880" y="315" width="230" height="70" rx="12"/>
+  <text class="text" x="905" y="345">Lane / keypoint model</text>
+  <text class="small" x="905" y="367">image → structured points</text>
+  <rect class="panel" x="880" y="410" width="230" height="70" rx="12"/>
+  <text class="text" x="905" y="440">3D detector</text>
+  <text class="small" x="905" y="462">point cloud → cuboids</text>
+
+  <path class="line" d="M310 185 H430"/>
+  <text class="small" x="338" y="171">HTTP</text>
+  <path class="line" d="M580 260 V370"/>
+  <text class="small" x="593" y="322">enqueue</text>
+  <path class="line" d="M430 445 H310"/>
+  <path class="line" d="M310 470 H430"/>
+  <path class="line" d="M730 185 H850"/>
+  <text class="small" x="758" y="171">discover</text>
+  <path class="line" d="M730 445 C790 445 790 315 850 315"/>
+  <text class="small" x="750" y="405">invoke</text>
+  <path class="line" d="M430 490 C360 555 235 555 185 520"/>
+  <text class="small" x="265" y="575">save normalized results</text>
+</svg>

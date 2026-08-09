@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">Full-task auto-annotation request lifecycle</title>
+  <desc id="desc">The client submits a task. The gateway validates it and enqueues a Celery job. The worker retrieves frames, invokes Nuclio, maps results, periodically saves annotations, and updates progress.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#64748b"/></marker>
+    <style>.bg{fill:#f8fafc}.head{fill:#fff;stroke:#cbd5e1;stroke-width:2}.title{font:700 24px Inter,Arial,sans-serif;fill:#0f172a}.label{font:700 16px Inter,Arial,sans-serif;fill:#0f172a}.text{font:14px Inter,Arial,sans-serif;fill:#475569}.life{stroke:#cbd5e1;stroke-width:2;stroke-dasharray:7 7}.line{stroke:#64748b;stroke-width:2;fill:none;marker-end:url(#arrow)}.async{stroke:#2563eb}.save{stroke:#16a34a}</style>
+  </defs>
+  <rect class="bg" width="1200" height="650" rx="24"/>
+  <text class="title" x="50" y="52">Full-Task Auto-Annotation Lifecycle</text>
+  <g>
+    <rect class="head" x="50" y="85" width="170" height="55" rx="12"/><text class="label" x="89" y="119">Client</text>
+    <rect class="head" x="280" y="85" width="170" height="55" rx="12"/><text class="label" x="319" y="119">Flask Gateway</text>
+    <rect class="head" x="510" y="85" width="170" height="55" rx="12"/><text class="label" x="555" y="119">Celery Worker</text>
+    <rect class="head" x="740" y="85" width="170" height="55" rx="12"/><text class="label" x="780" y="119">Nuclio Function</text>
+    <rect class="head" x="970" y="85" width="180" height="55" rx="12"/><text class="label" x="991" y="119">Annotation Backend</text>
+    <path class="life" d="M135 140 V610"/><path class="life" d="M365 140 V610"/><path class="life" d="M595 140 V610"/><path class="life" d="M825 140 V610"/><path class="life" d="M1060 140 V610"/>
+  </g>
+  <path class="line" d="M135 185 H365"/><text class="text" x="190" y="174">POST /requests</text>
+  <path class="line" d="M365 225 H1060"/><text class="text" x="615" y="214">read task metadata and labels</text>
+  <path class="line async" d="M365 270 H595"/><text class="text" x="420" y="259">enqueue job</text>
+  <path class="line" d="M365 310 H135"/><text class="text" x="188" y="299">202 + job id</text>
+  <path class="line" d="M595 355 H1060"/><text class="text" x="718" y="344">read task frame</text>
+  <path class="line" d="M595 400 H825"/><text class="text" x="649" y="389">image / point cloud</text>
+  <path class="line" d="M825 445 H595"/><text class="text" x="654" y="434">model result</text>
+  <path class="line save" d="M595 490 H1060"/><text class="text" x="692" y="479">map and batch-save annotations</text>
+  <path class="line async" d="M595 535 H365"/><text class="text" x="420" y="524">update progress</text>
+  <path class="line" d="M135 580 H365"/><text class="text" x="188" y="569">GET /requests/{id}</text>
+  <path class="line" d="M365 610 H135"/><text class="text" x="205" y="599">state + progress</text>
+</svg>
