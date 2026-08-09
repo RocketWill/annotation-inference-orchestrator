@@ -1,4 +1,4 @@
-# Auto-Annotation Orchestrator
+# Annotation Inference Orchestrator
 
 A server-side orchestration layer that connects annotation tasks with independently deployed Nuclio inference functions. The service retrieves task media, dispatches model inference, maps model labels to task labels, tracks asynchronous progress, and writes normalized results back to the annotation platform.
 
